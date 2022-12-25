@@ -9,7 +9,7 @@ const About = () => {
                     <div>
                         <h1 className="text-5xl font-bold">I make quality cakes by hand!</h1>
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button className="btn btn-primary">more info</button>
+                        <button className="btn btn-secondary">more info</button>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import './Header.css'
 const Header = () => {
     return (
         <div>
-            <div className="navbar bg-slate-500">
+            <div className="navbar bg-primary">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -39,7 +39,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Get started</a>
+                    <a className="btn btn-secondary">Get started</a>
                 </div>
             </div>
         </div>
