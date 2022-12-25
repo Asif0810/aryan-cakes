@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import './Header.css'
-import logo from '../../../assets/5229f2509537b4e69cbf51bffc4db979.jpg'
+
 const Header = () => {
     return (
         <div>
@@ -14,7 +14,7 @@ const Header = () => {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><a>Item 1</a></li>
                             <li tabIndex={0}>
-                                <a className="justify-between">
+                                <a className="justify-between ">
                                     Parent
 
                                 </a>
@@ -23,19 +23,19 @@ const Header = () => {
                             <li><a>Item 3</a></li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">Aryan's Cake</a>
+                    <a className="btn btn-ghost normal-case text-xl text-white">Aryan's Cake</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
+                        <li><a className='text-white'>Item 1</a></li>
                         <li tabIndex={0}>
-                            <a>
+                            <a className='text-white'>
                                 Parent
 
                             </a>
 
                         </li>
-                        <li><a>Item 3</a></li>
+                        <li><a className='text-white'>Item 3</a></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
