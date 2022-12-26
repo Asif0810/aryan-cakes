@@ -1,20 +1,49 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Context } from '../../Context/AuthProvaider';
 
 const UserReview = () => {
+    const navigate = useNavigate()
+    const { img, cake_name, _id } = useLoaderData();
+    console.log(img, cake_name)
     const [rating, setrating] = useState(0);
-
+    const { user } = useContext(Context)
     const reviewHandler = (event) => {
         event.preventDefault()
         const form = event.target;
         const name = form.username.value;
         const description = form.description.value;
-        const userRating = rating;
-        console.log(name, description, userRating)
+
+        console.log(name, description,)
+        const reviewInfo = {
+            userName: name,
+            description: description,
+            rating: rating,
+            user_image: user?.photoURL,
+        }
+        fetch('http://localhost:5000/review', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(reviewInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    alert('review succesfully')
+                }
+                form.reset()
+                console.log(data)
+                navigate(`/details/${_id}`)
+            }).catch(console.error())
     }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
+                    img
                     <h1 className="text-5xl font-bold">Review and Rating ***</h1>
 
                 </div>
@@ -31,11 +60,12 @@ const UserReview = () => {
                             <label className="label">
                                 <span className="label-text">Rating</span>
                                 <select onChange={event => setrating(event.target.value)}>
-                                    <option value="1">*</option>
-                                    <option value="2">**</option>
-                                    <option value="3">***</option>
-                                    <option value="4">****</option>
-                                    <option selected value="5">*****</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option selected value="5">5</option>
                                 </select>
                             </label>
 

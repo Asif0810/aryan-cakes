@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../../../Context/AuthProvaider';
 
 const Login = () => {
+    const [error, seterror] = useState('')
     const navigate = useNavigate();
     const location = useLocation();
     const { login } = useContext(Context)
@@ -20,7 +21,10 @@ const Login = () => {
                 form.reset()
                 navigate(from, { replace: true });
             })
-            .catch(console.error())
+            .catch(error => {
+                const message = error.message;
+                seterror(message)
+            })
     }
     return (
         <div>
@@ -47,6 +51,7 @@ const Login = () => {
                                 <Link to={'/register'}><small className='text-green-800'>are you new?</small></Link>
                             </div>
                             <div className="form-control mt-6">
+                                <p className='text-red-800'>{error}</p>
                                 <button className="btn btn-secondary">login</button>
                             </div>
                         </form>

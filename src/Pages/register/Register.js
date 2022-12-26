@@ -5,7 +5,7 @@ import { Context } from '../../Context/AuthProvaider';
 
 const Register = () => {
     const navigate = useNavigate()
-    const { regsiter } = useContext(Context)
+    const { regsiter, updateprofile } = useContext(Context)
     const [error, seterror] = useState('')
     const registerHandler = event => {
         event.preventDefault();
@@ -28,6 +28,7 @@ const Register = () => {
                 const user = result.user;
                 form.reset()
                 console.log(user)
+                userUpdate(name, photo)
                 navigate('/')
 
             })
@@ -35,7 +36,17 @@ const Register = () => {
                 const errorMessage = error.message;
                 seterror(errorMessage)
             })
-
+        const userUpdate = (name, photo) => {
+            const profile = {
+                displayName: name,
+                photoURL: photo
+            }
+            updateprofile(profile)
+                .then(() => { })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
 
 
     }

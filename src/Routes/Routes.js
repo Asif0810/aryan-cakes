@@ -28,8 +28,9 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://assignment-eleven-server-side.vercel.app/details/${params.id}`)
             },
             {
-                path: '/review',
-                element: <PrivateRoute><UserReview></UserReview></PrivateRoute>
+                path: '/review/:id',
+                element: <PrivateRoute><UserReview></UserReview></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://assignment-eleven-server-side.vercel.app/details/${params.id}`)
             },
             {
                 path: '/register',

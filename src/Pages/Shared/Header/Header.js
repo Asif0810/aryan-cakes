@@ -7,6 +7,7 @@ import './Header.css'
 const Header = () => {
     const { user, logOut } = useContext(Context)
     console.log(user?.email)
+    console.log(user)
     const logOutHandler = () => {
         logOut()
             .then(result => { })
@@ -25,35 +26,36 @@ const Header = () => {
 
                             <li><Link to={'/register'}>register</Link></li>
                             <li tabIndex={0}>
-                                <Link to={'/login'}>                  <a className="justify-between ">
+                                <Link to={'/login'}>                  <p className="justify-between ">
                                     login
 
-                                </a></Link>
+                                </p></Link>
 
                             </li>
-                            <li><a>Item 3</a></li>
+                            <li>Item 3</li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl text-white">Aryan's Cake</a>
+                    <p className="btn btn-ghost normal-case text-xl text-white">Aryan's Cake</p>
+
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li className='text-white'><Link to={'/'}>Home</Link></li>
                         <li className='text-white'><Link to={'/allcakes'}>all cakes</Link></li>
-                        <li><Link to={'/register'}><a className='text-white'>Register</a></Link></li>
+                        <li><Link to={'/register'}><p className='text-white'>Register</p></Link></li>
 
 
                         {
-                            user?.email ? <li><a onClick={logOutHandler} className='text-white'>Logout</a></li>
+                            user?.email ? <li><p onClick={logOutHandler} className='text-white'>Logout</p></li>
                                 : <li tabIndex={0}>
-                                    <Link to={'/login'}><a className='text-white'>Login</a></Link>
+                                    <Link to={'/login'}><p className='text-white'>Login</p></Link>
                                 </li>
                         }
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <p className='text-white'>{user?.email}</p>
-                    <a className="pl-8 pr-8 btn btn-secondary">Google</a>
+                    <img style={{ width: '70px', height: '70px', borderRadius: '100px' }} src={user?.photoURL} alt="" />
+
                 </div>
             </div>
         </div>
