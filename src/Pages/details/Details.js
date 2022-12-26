@@ -12,7 +12,7 @@ const Details = () => {
     const [ownreview, setownreview] = useState([])
     const deleteHandler = (id) => {
 
-        fetch(`http://localhost:5000/details/${id}`, {
+        fetch(`https://assignment-eleven-server-side.vercel.app/details/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json()

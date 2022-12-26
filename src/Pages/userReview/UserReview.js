@@ -53,7 +53,7 @@ const UserReview = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
-       
+
                     <h1 className="text-5xl font-bold">Review and Rating ***</h1>
 
                 </div>
@@ -91,12 +91,12 @@ const UserReview = () => {
                             <label className="label">
                                 <span className="label-text">Rating</span>
                                 <select onChange={event => setrating(event.target.value)}>
-                                    <option value="0">0</option>
+                                    <option selected value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option selected value="5">5</option>
+                                    <option value="5">5</option>
                                 </select>
                             </label>
 
