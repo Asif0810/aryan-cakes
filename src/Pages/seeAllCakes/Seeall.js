@@ -12,8 +12,8 @@ const Seeall = ({ cake }) => {
                     <div className="card-body">
                         <h2 className="card-title">{cake_name}!</h2>
                         <b>price: {price}$</b>
-                        <p>{description.slice(0, 100)}...... <small className='text-indigo-700'><Link to={'/details'}>details</Link></small> </p>
-                        <button className="btn btn-secondary w-32 ml-24">details</button>
+                        <p>{description.slice(0, 100)}......  </p>
+                        <Link to={`/details/${_id}`}><button className="btn btn-secondary w-32 ml-24">details</button></Link>
                     </div>
                 </div>
             </div>
