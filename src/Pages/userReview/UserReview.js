@@ -13,13 +13,17 @@ const UserReview = () => {
         const form = event.target;
         const name = form.username.value;
         const description = form.description.value;
-
+        const image = form.imageURL.value;
+        const userAddress = form.address.value
         console.log(name, description,)
         const reviewInfo = {
             userName: name,
             description: description,
             rating: rating,
-            user_image: user?.photoURL,
+            user_image: image || user.photoURL,
+            cakeName: cake_name,
+            address: userAddress
+
         }
         fetch('http://localhost:5000/review', {
             method: 'POST',
@@ -53,7 +57,21 @@ const UserReview = () => {
                             <label className="label">
                                 <span className="label-text">Your Name</span>
                             </label>
-                            <input type="text" name='username' placeholder="write your name" className="input input-bordered" />
+                            <input required type="text" name='username' placeholder="write your name" className="input input-bordered" />
+
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">image URL</span>
+                            </label>
+                            <input  type="text" name='imageURL' placeholder="image" className="input input-bordered" />
+
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Address</span>
+                            </label>
+                            <input required type="text" name='address' placeholder="address" className="input input-bordered" />
 
                         </div>
                         <div className="form-control">
