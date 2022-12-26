@@ -5,7 +5,7 @@ import Cake from './cake';
 const Cakes = () => {
     const [cakes, setcakes] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/cakes')
+        fetch('https://assignment-eleven-server-side.vercel.app/cakes')
             .then(res => res.json())
             .then(data => setcakes(data))
     }, [])
