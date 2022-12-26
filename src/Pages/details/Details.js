@@ -1,17 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { Context } from '../../Context/AuthProvaider';
+import OwnReview from '../userReview/OwnReview';
+
 import ReviewList from '../userReview/ReviewList';
 
 const Details = () => {
+    const { user } = useContext(Context)
+
     const [reviewlist, setreviewList] = useState([]);
-    console.log(reviewlist)
+    const [ownreview, setownreview] = useState([])
+    const deleteHandler = (id) => {
+
+        fetch(`http://localhost:5000/details/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json()
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        const remain = ownreview.filter(o => o._id !== id);
+                        setownreview(remain)
+                    }
+                    console.log(data)
+                }))
+
+    }
+
+
+
     useEffect(() => {
-        fetch('http://localhost:5000/reviewlist')
+        fetch(`https://assignment-eleven-server-side.vercel.app/myreview?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setownreview(data))
+    }, [user?.email])
+
+    useEffect(() => {
+        fetch('https://assignment-eleven-server-side.vercel.app/reviewlist')
             .then(res => res.json())
             .then(data => setreviewList(data))
     }, [])
     const { img, cake_name, description, price, _id } = useLoaderData();
-    console.log(cake_name)
+
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -29,10 +58,12 @@ const Details = () => {
                 <table className="table w-full">
                     <h2 className='text-center text-4xl'>your review</h2>
                     <thead>
-                        
+
                     </thead>
                     <tbody>
-
+                        {
+                            ownreview.map(r => <OwnReview key={r._id} r={r} deleteHandler={deleteHandler}></OwnReview>)
+                        }
                     </tbody>
 
 
@@ -45,7 +76,7 @@ const Details = () => {
 
                     </thead>
                     <tbody>
-                        <h2 className='text-center text-4xl'>Customer review</h2>
+                        <h2 className='text-center text-4xl'>All Customer review</h2>
                         {
                             reviewlist.map(rev => <ReviewList key={rev._id} rev={rev}></ReviewList>)
                         }

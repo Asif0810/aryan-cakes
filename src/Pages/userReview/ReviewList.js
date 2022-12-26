@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReviewList = ({ rev }) => {
     const { rating, userName, user_image, address, description, cakeName } = rev;
-    console.log(userName)
+
     return (
         <div>
             <tr>

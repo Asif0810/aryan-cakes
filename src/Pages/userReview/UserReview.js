@@ -3,29 +3,35 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { Context } from '../../Context/AuthProvaider';
 
 const UserReview = () => {
+
+
     const navigate = useNavigate()
     const { img, cake_name, _id } = useLoaderData();
-    console.log(img, cake_name)
+
     const [rating, setrating] = useState(0);
     const { user } = useContext(Context)
+
+
     const reviewHandler = (event) => {
         event.preventDefault()
         const form = event.target;
         const name = form.username.value;
         const description = form.description.value;
         const image = form.imageURL.value;
-        const userAddress = form.address.value
+        const userAddress = form.address.value;
+        const email = form.email.value
         console.log(name, description,)
         const reviewInfo = {
-            userName: name,
+            userName: name || user.displayName,
             description: description,
             rating: rating,
             user_image: image || user.photoURL,
             cakeName: cake_name,
-            address: userAddress
+            address: userAddress,
+            email: email
 
         }
-        fetch('http://localhost:5000/review', {
+        fetch('https://assignment-eleven-server-side.vercel.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -47,7 +53,7 @@ const UserReview = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
-                    img
+       
                     <h1 className="text-5xl font-bold">Review and Rating ***</h1>
 
                 </div>
@@ -62,9 +68,16 @@ const UserReview = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input defaultValue={user?.email} type="email" name='email' placeholder="address" className="input input-bordered" />
+
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
                                 <span className="label-text">image URL</span>
                             </label>
-                            <input  type="text" name='imageURL' placeholder="image" className="input input-bordered" />
+                            <input type="text" name='imageURL' placeholder="image" className="input input-bordered" />
 
                         </div>
                         <div className="form-control">

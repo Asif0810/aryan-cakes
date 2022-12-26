@@ -1,7 +1,8 @@
 import React from 'react';
 
-const OwnReview = (myreview) => {
-    
+const OwnReview = ({ r, deleteHandler }) => {
+    const { _id, address, cakeName, description, rating, userName, user_image } = r;
+ 
     return (
         <div>
             <tr>
@@ -24,9 +25,10 @@ const OwnReview = (myreview) => {
                     <br />
 
                 </td>
-                <td>rating: {rating} star</td>
+                <td>rating:{rating} star</td>
                 <td>address: {address}</td>
                 <td>comment: {description}</td>
+                <td><button onClick={() => deleteHandler(_id)} className='btn btn-secondary'>delete</button></td>
             </tr>
         </div>
     );

@@ -5,9 +5,16 @@ import { Context } from '../../../Context/AuthProvaider';
 import './Header.css'
 
 const Header = () => {
-    const { user, logOut } = useContext(Context)
-    console.log(user?.email)
-    console.log(user)
+    const { user, logOut, google } = useContext(Context)
+    const googleHandler = () => {
+        google()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(console.error())
+    }
+
     const logOutHandler = () => {
         logOut()
             .then(result => { })
@@ -35,11 +42,12 @@ const Header = () => {
                             <li>Item 3</li>
                         </ul>
                     </div>
-                    <p className="btn btn-ghost normal-case text-xl text-white">Aryan's Cake</p>
-
+                    <Link to={'/'}><p className="btn btn-ghost normal-case text-xl text-white">Aryan's Cake</p></Link>
+                    <button onClick={googleHandler} className='btn btn-secondary'>google</button>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
+                        <li className='text-white'><Link to={'/blog'}>Blog</Link></li>
                         <li className='text-white'><Link to={'/'}>Home</Link></li>
                         <li className='text-white'><Link to={'/allcakes'}>all cakes</Link></li>
                         <li><Link to={'/register'}><p className='text-white'>Register</p></Link></li>

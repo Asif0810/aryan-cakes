@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Seeall = ({ cake }) => {
     const { cake_name, description, price, img, _id } = cake
-    console.log(cake)
+    
     return (
         <div>
             <div className=''>
